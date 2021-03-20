@@ -86,23 +86,27 @@ const selectRequestedAmountNotes = createSelector(selectors.selectAll, selectAmo
     bigCoins:[] as MoneyCount[],
     smallCoins:[]as MoneyCount[],
   }
+  return getCoins(amount, notes, moneyBoxes);
+});
+
+const getCoins = (amount: number, notes: NoteCoinTdoBase[], moneyBoxes: MoneyBoxes) => {
   for (let i = 0; i < notes.length; i++) {
     if (amount === 0) break;
     const note = notes[i];
     if (amount >= note.value) {
       const count = Math.floor(amount / note.value);
       amount = amount - count * note.value; 
-      selectTheBox(note, moneyBoxes, count);
+      assignCoinToBox(note, moneyBoxes, count);
     }
   }
   return moneyBoxes;
-});
+}
 
 export const notesSelectors = {...selectors, selectRequestedAmountNotes};
 
 export default notesSlice.reducer;
 
-function selectTheBox(note: NoteCoinTdoBase, moneyBoxes: MoneyBoxes, count: number) {
+function assignCoinToBox(note: NoteCoinTdoBase, moneyBoxes: MoneyBoxes, count: number) {
   if (note.type === CurrencyType.NOTE) {
     moneyBoxes.notes.push({ [note.id]: count });
   } else {
