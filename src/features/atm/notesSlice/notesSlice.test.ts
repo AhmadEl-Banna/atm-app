@@ -12,9 +12,9 @@ describe('Notes store', () => {
     const coinToAdd: Currency = {
       id: uuid(),
       value: 5000,
-      type: CurrencyType.NOTE
+      type: CurrencyType.NOTE,
     };
     store.dispatch(notesActions.addCoin(coinToAdd));
-    expect(notesSelectors.selectById(store.getState(),coinToAdd.id)).toEqual(coinToAdd);
-  })
+    expect(notesSelectors.selectById(store.getState(), coinToAdd.id)).toEqual(coinToAdd);
+  });
 });

@@ -6,26 +6,28 @@ import { notesSelectors } from '../notesSlice';
 import MoneyBox from './Box';
 
 const Container = styled.div<{ gridArea?: string }>`
- display: flex;
- flex-direction: row;
- flex-wrap: wrap;
- grid-area: ${({gridArea}) => gridArea};
- font-size: 80px;
- align-self: center;
- justify-self: center;
-`
-
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  grid-area: ${({ gridArea }) => gridArea};
+  font-size: 80px;
+  align-self: center;
+  justify-self: center;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+  }
+`;
 
 const MoneyBoxes: FunctionComponent<{ gridArea?: string }> = ({ gridArea }) => {
   const keys = useSelector(notesSelectors.selectBoxesKeys);
 
-  return (<Container gridArea={gridArea} >
-    {keys.map((key) => {
-      return <MoneyBox key={key} currencyType={key}/>
-    })}
-  </Container>)
-}
-  
+  return (
+    <Container gridArea={gridArea}>
+      {keys.map((key) => {
+        return <MoneyBox key={key} currencyType={key} />;
+      })}
+    </Container>
+  );
+};
 
-  export default MoneyBoxes
+export default MoneyBoxes;

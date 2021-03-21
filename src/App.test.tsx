@@ -10,5 +10,4 @@ test('renders learn react link', () => {
       <App />
     </Provider>
   );
-
 });
