@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, {  } from 'styled-components';
 
 import { notesSelectors } from '../notesSlice';
 import MoneyBox from './Box';
