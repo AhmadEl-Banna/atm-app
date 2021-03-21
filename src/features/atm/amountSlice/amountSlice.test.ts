@@ -1,5 +1,5 @@
-import { store } from '../../app/store';
-import {amountActions, selectAmount} from './amountSlice'
+import { store } from '../../../app/store';
+import {amountActions, selectAmount} from '.'
 
 describe('Amount store', () => {
   it('should have the initialState of 0', () => {

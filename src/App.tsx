@@ -1,26 +1,38 @@
-import './App.css';
+import React, { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { amountActions, selectAmount } from './features/atm/amountSlice';
-import { notesSelectors } from './features/notes-coins/notesSlice';
+import { amountActions } from './features/atm/amountSlice';
+import KeyPad from './features/atm/components/KeyPad';
+import ResultComponent from './features/atm/components/ResultComponent';
+import AppHeader from './features/layout/components/AppHeader';
+
+const AppContainer = styled.div`
+display: grid;
+grid-template-rows: 100px 1fr;
+grid-gap: 10px
+`
 
 function App() {
+  const [isSubmitted, setIsSubmitted] = useState(false)
   const dispatch = useDispatch();
-  const amount = useSelector(selectAmount);
-  const selectedNotes = useSelector(notesSelectors.selectRequestedAmountNotes);
+  const onSubmit = useCallback((amount) => {
+    setIsSubmitted(true);
+    dispatch(amountActions.setAmount(amount));
+  }, [setIsSubmitted, dispatch])
+  
+  const onBack = useCallback(() => {
+    setIsSubmitted(false);
+  } , [setIsSubmitted])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <input type="text" value={amount} onChange={(e) => {
-          dispatch(amountActions.setAmount(parseInt(e.target.value)));
-        }} />
-        
-        {JSON.stringify(selectedNotes)}
-        
-      </header>
-    </div>
+    <AppContainer>
+      <AppHeader showBackButton={isSubmitted} title={!isSubmitted ? 'Select amount' : 'Depositing'} onBack={onBack}/>
+      {!isSubmitted ?
+        (<KeyPad onSubmit={onSubmit} />) :
+        (<ResultComponent />)
+        }
+    </AppContainer>
   );
 }
 

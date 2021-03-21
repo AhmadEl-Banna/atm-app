@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import amountReducer from '../features/atm/amountSlice';
-import notesReducer from '../features/notes-coins/notesSlice'
+import notesReducer from '../features/atm/notesSlice'
 
 export const store = configureStore({
   reducer: {
