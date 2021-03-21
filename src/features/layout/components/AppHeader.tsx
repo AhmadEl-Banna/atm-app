@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 
-import { BackButton } from '../../atm/components/buttons';
+import { ArrowBackButton } from '../../atm/components/buttons';
 
 
 const Header = styled.header<{ showBackButton: boolean }>`
@@ -19,6 +19,12 @@ const Title = styled.span`
   justify-self: center;
   align-self: center;
   font-size: 40px;
+`
+
+const BackButton = styled(ArrowBackButton)`
+  justify-self: center;
+  align-self: center;
+  margin-left: 5px;
 `
 
 const AppHeader: FunctionComponent<{ title: string; showBackButton: boolean , onBack :()=> void}> = ({ title, showBackButton, onBack }) => {

@@ -21,7 +21,7 @@ export const NumPadButton= styled(BaseButton)`
   border-radius: 50%;
 `
 
-export const BackButton = styled(NumPadButton)`
+export const ArrowBackButton = styled(NumPadButton)`
   justify-self: start;
   align-self: start;
 `

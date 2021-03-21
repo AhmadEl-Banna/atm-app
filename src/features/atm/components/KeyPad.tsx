@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState } from 'react';
 import styled from 'styled-components';
 
 import AmountValue from './AmountValue';
-import { BackButton, NumPadButton, SubmitButton } from './buttons';
+import { ArrowBackButton, NumPadButton, SubmitButton } from './buttons';
 
 const Container = styled.div`
 display: grid;
@@ -83,9 +83,9 @@ const KeyPad: FunctionComponent<KeyPadProps> = ({onSubmit}) => {
     <NumPadButton gridArea="num-0" onClick={()=>{
         onKeyClick(0);
     }}>0</NumPadButton>
-    <BackButton gridArea="remove" onClick={onRemoveClick}>
+    <ArrowBackButton gridArea="remove" onClick={onRemoveClick}>
       <i className="material-icons md-32">arrow_back</i>
-    </BackButton>
+    </ArrowBackButton>
     </KeyPadContainer>
     <SubmitButton disabled={amount === 0} gridArea="submit" onClick={()=>{onSubmit(amount)}} >submit</SubmitButton>
   </Container>)

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import styled, {  } from 'styled-components';
 
 import { notesSelectors } from '../notesSlice';
 import MoneyBox from './Box';
@@ -13,6 +13,9 @@ const Container = styled.div<{ gridArea?: string }>`
  font-size: 80px;
  align-self: center;
  justify-self: center;
+ @media screen and (max-width: 480px) {
+  flex-direction: column;
+ }
 `
 
 
